@@ -17,7 +17,7 @@ const Register = () => {
     const [passShow,setPassShow ]=useState(false)
     const navigate =useNavigate();
 
-    const {user, registerUser, googleSignIn}=useContext(AuthContext)
+    const {user, registerUser, googleSignIn , githubSignIn}=useContext(AuthContext)
 
 
     const registerHandel= (e)=>{
@@ -84,6 +84,16 @@ const Register = () => {
             
           });
     }
+    const githubLogInHandel = () => {
+
+        githubSignIn()
+            .then(() => {
+                console.log(successMsg);
+
+            }).catch((error) => {
+                console.log(error);
+            });
+    }
 
 
     return (
@@ -145,7 +155,7 @@ const Register = () => {
 
                         <button className=" btn btn-ghost p-0 rounded-full"> <CiFacebook className='text-blue-500 w-11 h-11' /></button>
                         <button onClick={()=>googleLogInHandel()} className=" btn btn-ghost p-0 rounded-full">  <RiGoogleFill className='text-red-500 w-10 h-10 p-1  font-bold rounded-full border-4 border-red-500' /></button>
-                        <button className=" btn btn-ghost p-0 rounded-full"> <VscGithub className='text-gray-800 w-10 h-10' /></button>
+                        <button onClick={githubLogInHandel} className=" btn btn-ghost p-0 rounded-full"> <VscGithub className='text-gray-800 w-10 h-10' /></button>
 
                     </div>
                     <div className='text-xl font-semibold py-4'>

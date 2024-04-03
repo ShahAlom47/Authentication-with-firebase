@@ -19,7 +19,7 @@ const LogIn = () => {
     const navigate = useNavigate();
     const emailRef = useRef(null);
 
-    const { user, LoginUser, googleSignIn, ForgetUserPass } = useContext(AuthContext)
+    const { user, LoginUser, googleSignIn, ForgetUserPass, githubSignIn } = useContext(AuthContext)
 
 
     const registerHandel = (e) => {
@@ -56,16 +56,11 @@ const LogIn = () => {
                 setSuccessMsg('Login Successfully')
                 e.target.reset()
                 navigate('/')
-
-
             })
             .catch((error) => {
-
                 const errorMessage = error.message;
-                console.log(errorMessage);
                 setErrorMsg(errorMessage)
             });
-
     }
 
     const googleLogInHandel = () => {
@@ -75,10 +70,19 @@ const LogIn = () => {
 
             }).catch((error) => {
                 console.log(error);
-
             });
     }
 
+    const githubLogInHandel = () => {
+
+        githubSignIn()
+            .then((r) => {
+                console.log(r.user);
+
+            }).catch((error) => {
+                console.log(error);
+            });
+    }
 
     const forgetPassHandel = () => {
         const email = emailRef.current.value
@@ -92,6 +96,8 @@ const LogIn = () => {
                 console.log(errorMessage);
             });
     }
+
+
 
     return (
         <div className=" w-full min-h-screen bg-slate-500 flex justify-center items-center lg:p-10">
@@ -141,7 +147,7 @@ const LogIn = () => {
 
                         <button className=" btn btn-ghost p-0 rounded-full"> <CiFacebook className='text-blue-500 w-11 h-11' /></button>
                         <button onClick={googleLogInHandel} className=" btn btn-ghost p-0 rounded-full">  <RiGoogleFill className='text-red-500 w-10 h-10 p-1  font-bold rounded-full border-4 border-red-500' /></button>
-                        <button className=" btn btn-ghost p-0 rounded-full"> <VscGithub className='text-gray-800 w-10 h-10' /></button>
+                        <button onClick={githubLogInHandel} className=" btn btn-ghost p-0 rounded-full"> <VscGithub className='text-gray-800 w-10 h-10' /></button>
 
                     </div>
                     <div className='text-xl font-semibold py-4'>
