@@ -4,6 +4,7 @@ import { AuthContext } from "./AuthProvider";
 
 
 
+
 const Navbar = () => {
     const { user, LogOutUser } = useContext(AuthContext)
     const navigate = useNavigate();
@@ -18,6 +19,7 @@ const Navbar = () => {
 
 
     }
+  
 
 
     return (
@@ -53,7 +55,7 @@ const Navbar = () => {
                                     <span className="badge">New</span>
                                 </a>
                             </li>
-                            <li><a>Settings</a></li>
+                            <li><a >Settings</a></li>
                             <li><a onClick={LogOutHandel}>Logout</a></li>
                         </ul>
                     }
